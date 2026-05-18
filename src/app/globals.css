@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @import "@heroui/styles";
+@plugin "daisyui" {
+  themes: false;
+}
+
+:root {
+  --p-color: #f2b332;
+  --s-color: #dadad8;
+
+  --accent: oklch(0.7 0.25 260);
+  --success: oklch(0.65 0.15 155);
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+}
