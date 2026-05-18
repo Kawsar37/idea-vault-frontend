@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import NavbarComponent from "@/components/Navbar";
 import { Providers } from "./provider";
+import Footer from "@/components/Footer";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -15,14 +16,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={` h-full antialiased`} suppressHydrationWarning>
-      <body
-        className="bg-background text-foreground min-h-full"
-        cz-shortcut-listen="true"
-      >
+    <html lang="en" className={`h-full antialiased`} suppressHydrationWarning>
+      <body className="bg-background text-foreground" cz-shortcut-listen="true">
         <Providers>
           <NavbarComponent />
-          <main>{children}</main>
+          <main className=" min-h-[90vh]">{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>

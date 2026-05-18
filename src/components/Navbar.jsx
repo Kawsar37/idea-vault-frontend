@@ -1,3 +1,5 @@
+"use client";
+
 import { Avatar } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +28,7 @@ export default function Navbar() {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm dark:shadow-white/10">
+    <div className="navbar bg-base-100 shadow-sm dark:shadow-white/10 mb-7 lg:mb-15">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,8 +49,8 @@ export default function Navbar() {
             </svg>
           </div>
           <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            tabIndex={-1}
+            className="menu menu-sm dropdown-content bg-gray-100 rounded-lg z-1 mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
@@ -69,7 +71,7 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end pr-4">
+      <div className="navbar-end pr-4 z-50">
         <ThemeSwitch />
         <Link href={"/my-profile"}>
           <Avatar>

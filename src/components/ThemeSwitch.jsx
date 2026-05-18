@@ -1,18 +1,22 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { CiLight } from "react-icons/ci";
-import { IoMoonSharp } from "react-icons/io5";
+import { Sun, Moon } from "@gravity-ui/icons";
 
 export function ThemeSwitch() {
-  const { theme, setTheme } = useTheme("light");
+  const { theme, setTheme } = useTheme();
+
+  const currentTheme = theme ?? "light";
 
   return (
     <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="text-lg mr-4"
+      onClick={() => {
+        setTheme(currentTheme === "dark" ? "light" : "dark");
+        e.stopPropagation();
+      }}
+      className="text-lg mr-4 z-9999"
     >
-      {theme === "light" ? <IoMoonSharp /> : <CiLight />}
+      {currentTheme === "light" ? <Moon /> : <Sun />}
     </button>
   );
 }
