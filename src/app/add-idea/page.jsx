@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
-  Description,
   FieldError,
   Form,
   Input,
@@ -15,9 +14,12 @@ import {
   ListBox,
   Spinner,
 } from "@heroui/react";
+import { useSession } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 export default function AddIdeaPage() {
   const [isPending, setIsPending] = useState(false);
+  const { data: session, isPending: sessionPending } = useSession();
 
   const onSubmit = async (e) => {
     setIsPending(true);
@@ -25,6 +27,9 @@ export default function AddIdeaPage() {
     const formData = new FormData(e.currentTarget);
     const idea = {
       ...Object.fromEntries(formData.entries()),
+      userId: session.user.id,
+      userName: session.user.name,
+      userImage: session.user.image,
       time: new Date().toLocaleDateString(),
     };
     // console.log(formData);
@@ -39,7 +44,9 @@ export default function AddIdeaPage() {
     setIsPending(false);
 
     const data = await res.json();
-    console.log(process.env.NEXT_PUBLIC_BACKEND_URL, data);
+    if (data) {
+      toast.success("Idea Added Successfully!");
+    }
   };
 
   return (
@@ -124,7 +131,7 @@ export default function AddIdeaPage() {
             </Select.Popover>
           </Select>
 
-          <TextField isRequired name="image-url" type="text" className="flex-1">
+          <TextField isRequired name="imageUrl" type="text" className="flex-1">
             <Label>Image URL</Label>
             <Input placeholder="Enter Image URL" />
             <FieldError />

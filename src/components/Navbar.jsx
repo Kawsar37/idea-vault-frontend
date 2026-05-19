@@ -1,13 +1,16 @@
 "use client";
 
-import { Avatar } from "@heroui/react";
+import { Avatar, Button, Chip, Spinner } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavLink from "./NavLink";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { authClient, useSession } from "@/lib/auth-client";
 
 export default function Navbar() {
+  const { data: session, isPending } = useSession();
+
   const links = (
     <>
       <li>
@@ -50,9 +53,20 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-gray-100 rounded-lg z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-gray-100 dark:bg-black dark:ring-gray-50 rounded-lg z-1 mt-3 w-52 p-2 shadow"
           >
             {links}
+            {session && (
+              <Button
+                variant="danger"
+                onClick={async () => {
+                  await authClient.signOut();
+                }}
+                className={" w-full"}
+              >
+                Log Out
+              </Button>
+            )}
           </ul>
         </div>
         <Link
@@ -72,16 +86,34 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end pr-4 z-50">
-        <ThemeSwitch />
-        <Link href={"/my-profile"}>
-          <Avatar>
-            <Avatar.Image
-              alt="John Doe"
-              src="https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-            />
-            <Avatar.Fallback>JD</Avatar.Fallback>
-          </Avatar>
-        </Link>
+        {session ? (
+          <div className="flex items-center gap-3">
+            <Link href={"/my-profile"}>
+              <Avatar>
+                <Avatar.Image
+                  referrerPolicy="no-referrer"
+                  alt={session.user.name}
+                  src={session.user.image}
+                />
+                <Avatar.Fallback>{session.user.name[0]}</Avatar.Fallback>
+              </Avatar>
+            </Link>
+
+            <Button
+              variant="danger"
+              onClick={async () => {
+                await authClient.signOut();
+              }}
+              className={"hidden lg:flex"}
+            >
+              Log Out
+            </Button>
+          </div>
+        ) : (
+          <Link href={"/sign-in"}>
+            <Button className={"bg-(--p-color)"}>Log In</Button>
+          </Link>
+        )}
       </div>
     </div>
   );

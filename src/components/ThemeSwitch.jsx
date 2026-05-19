@@ -12,7 +12,6 @@ export function ThemeSwitch() {
     <button
       onClick={() => {
         setTheme(currentTheme === "dark" ? "light" : "dark");
-        e.stopPropagation();
       }}
       className="text-lg mr-4 z-9999"
     >

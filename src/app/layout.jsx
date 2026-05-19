@@ -3,6 +3,7 @@ import "./globals.css";
 import NavbarComponent from "@/components/Navbar";
 import { Providers } from "./provider";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -20,8 +21,9 @@ export default function RootLayout({ children }) {
       <body className="bg-background text-foreground" cz-shortcut-listen="true">
         <Providers>
           <NavbarComponent />
-          <main className=" min-h-[90vh]">{children}</main>
+          <main className=" min-h-[70vh]">{children}</main>
           <Footer />
+          <Toaster />
         </Providers>
       </body>
     </html>
