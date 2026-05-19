@@ -6,8 +6,9 @@ import toast from "react-hot-toast";
 
 export default function CommentDeleteButton({ id }) {
   const handleDelete = async () => {
+    console.log(id);
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/comment/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -17,7 +18,7 @@ export default function CommentDeleteButton({ id }) {
     );
 
     const data = await res.json();
-    if (data) toast.success("Idea Deleted!");
+    if (data) toast.success("Comment Deleted!");
   };
 
   return (
@@ -35,7 +36,7 @@ export default function CommentDeleteButton({ id }) {
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
               <AlertDialog.Heading>
-                Delete Idea permanently?
+                Delete Comment permanently?
               </AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
@@ -49,7 +50,7 @@ export default function CommentDeleteButton({ id }) {
                 Cancel
               </Button>
               <Button onClick={handleDelete} slot="close" variant="danger">
-                Delete Idea
+                Delete Comment
               </Button>
             </AlertDialog.Footer>
           </AlertDialog.Dialog>
