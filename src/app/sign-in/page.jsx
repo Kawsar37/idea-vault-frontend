@@ -38,7 +38,7 @@ export default function SignInPage() {
   };
   return (
     <div className="pt-15 lg:pt-10">
-      <Card className="md:max-w-96 max-w-[90%] mx-auto">
+      <Card className="md:max-w-96 max-w-[90%] mx-auto rounded-xl">
         <Form className="flex w-full flex-col gap-4" onSubmit={onSubmit}>
           <TextField
             isRequired

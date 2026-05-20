@@ -7,6 +7,8 @@ import Navbar from "@/components/Navbar";
 import { Providers } from "./provider";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+import { Spinner } from "@heroui/react";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -28,11 +30,13 @@ export default function RootLayout({ children }) {
         cz-shortcut-listen="true"
       >
         <Providers>
-          <Navbar />
+          <Suspense>
+            <Navbar />
+          </Suspense>
           <main className=" min-h-[70vh]">{children}</main>
           <Footer />
-          <Toaster />
         </Providers>
+        <Toaster />
       </body>
     </html>
   );
