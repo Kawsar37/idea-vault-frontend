@@ -16,7 +16,7 @@ export default function IdeaCard({ idea, icon = false }) {
     budget,
   } = idea;
   return (
-    <Card className="w-full items-stretch md:flex-row">
+    <Card className="w-full items-stretch md:flex-row rounded-xl">
       <div className="relative h-35 w-full shrink-0 overflow-hidden rounded-2xl sm:h-30 sm:w-40">
         <Image
           alt="Cherries"
