@@ -3,6 +3,11 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import React from "react";
 
+export const metadata = {
+  title: "My Ideas",
+  description: "IdeaVault is a idea publishing blog website",
+};
+
 export default async function MyIdeasPage() {
   const session = await auth.api.getSession({
     query: {
@@ -10,8 +15,18 @@ export default async function MyIdeasPage() {
     },
     headers: await headers(), // headers containing the user's session token
   });
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/ideas/${session.user.id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
   const ideas = await res.json();
 

@@ -33,7 +33,9 @@ export default function IdeaCard({ idea, icon = false }) {
       <div className="flex flex-1 flex-col gap-3 ">
         <Card.Header className="gap-1 relative">
           <Card.Title className="pr-8 font-semibold">{title}</Card.Title>
-          <Card.Description>{shortDescription}</Card.Description>
+          <Card.Description className="text-gray-700 dark:text-shadow-white">
+            {shortDescription}
+          </Card.Description>
           <p className="text-sm">Budget: ${budget}</p>
 
           {icon && (

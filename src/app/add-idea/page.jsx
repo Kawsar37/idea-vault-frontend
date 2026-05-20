@@ -14,7 +14,7 @@ import {
   ListBox,
   Spinner,
 } from "@heroui/react";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 export default function AddIdeaPage() {
@@ -34,10 +34,13 @@ export default function AddIdeaPage() {
     };
     // console.log(formData);
 
+    const { data: tokenData } = await authClient.token();
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/idea`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(idea),
     });

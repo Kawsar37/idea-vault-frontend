@@ -2,7 +2,6 @@ import IdeaCard from "@/components/IdeaCard";
 import { IdeasMarquee } from "@/components/IdeaMarquee";
 import ImageHover from "@/components/ImageHover";
 import HeroSlider from "@/components/SliderHomePage";
-import { MarqueeDemo } from "@/components/ui/marquee-demo";
 
 export default async function Home() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home-ideas`);

@@ -110,7 +110,7 @@ export default function SignUpPage() {
               </InputGroup.Suffix>
             </InputGroup>
             <Description>
-              Must be at least 8 characters with 1 uppercase and 1 number
+              Must be at least 6 characters with 1 uppercase and 1 number
             </Description>
             <FieldError />
           </TextField>

@@ -1,5 +1,5 @@
 import IdeaCard from "./IdeaCard";
-import { Marquee } from "./ui/marquee";
+import Marquee from "react-fast-marquee";
 
 export function IdeasMarquee({ ideas }) {
   if (!ideas || ideas.length === 0) return null;
@@ -12,7 +12,12 @@ export function IdeasMarquee({ ideas }) {
         </h1>
       </div>
 
-      <Marquee pauseOnHover className="[--duration:30s] gap-4">
+      <Marquee
+        gradient={true} // This turns on the fade effect
+        gradientColor="white"
+        pauseOnHover
+        className="[--duration:30s] gap-4"
+      >
         {ideas.map((idea) => (
           <div key={idea._id} className="shrink-0 mx-2">
             <IdeaCard idea={idea} icon={false} />

@@ -37,7 +37,7 @@ export default async function Navbar() {
   );
 
   return (
-    <div className="sticky top-0 navbar bg-gray-100 dark:bg-black shadow-sm dark:shadow-white/10 mb-7 lg:mb-15 z-40">
+    <div className="sticky top-0 navbar bg-gray-100 dark:bg-black shadow-sm dark:shadow-white/10 mb-7 lg:mb-15 z-9999">
       <div className="navbar-start">
         <div className="dropdown z-10">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

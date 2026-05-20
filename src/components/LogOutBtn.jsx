@@ -9,7 +9,7 @@ export default function LogOutOutBtn() {
       onClick={async () => {
         await authClient.signOut();
       }}
-      className={" w-full"}
+      className={"z-99999 bg-red-400 w-full"}
     >
       Log Out
     </Button>
