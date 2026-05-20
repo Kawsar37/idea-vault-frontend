@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import IdeaCard from "@/components/IdeaCard";
 import { IdeasMarquee } from "@/components/IdeaMarquee";
 import ImageHover from "@/components/ImageHover";
