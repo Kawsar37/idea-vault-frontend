@@ -16,6 +16,7 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 export default function SignInPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -98,7 +99,15 @@ export default function SignInPage() {
 
             <p className="text-gray-600 my-3 text-center text-sm">OR</p>
 
-            <Button className="w-full" variant="tertiary">
+            <Button
+              className="w-full"
+              variant="tertiary"
+              onClick={async () => {
+                const data = await authClient.signIn.social({
+                  provider: "google",
+                });
+              }}
+            >
               <Icon icon="devicon:google" />
               Sign in with Google
             </Button>

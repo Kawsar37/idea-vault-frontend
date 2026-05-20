@@ -1,10 +1,12 @@
-import { Avatar, Card } from "@heroui/react";
+import { Avatar, Button, Card } from "@heroui/react";
 import CommentDeleteButton from "./CommentDeleteButton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { CommentEditModal } from "./CommentEditModal";
+import { ArrowUpRightFromSquare } from "@gravity-ui/icons";
+import Link from "next/link";
 
-export async function CommentCard({ comment: data }) {
+export async function CommentCard({ comment: data, icon = false }) {
   const session = await auth.api.getSession({
     query: {
       disableCookieCache: true,
@@ -29,6 +31,20 @@ export async function CommentCard({ comment: data }) {
           <Card.Description className="text-base">{comment}</Card.Description>
           {session.user.id === userId && (
             <div className="flex gap-3 absolute md:top-2 top-20 right-2">
+              {icon && (
+                <Link
+                  href={`${process.env.BETTER_AUTH_URL}/ideas/${data.ideaId}`}
+                  target="_blank"
+                >
+                  <Button
+                    variant="secondary"
+                    className={"h-10 w-10 rounded-full"}
+                    // md:top-2 top-20
+                  >
+                    <ArrowUpRightFromSquare />
+                  </Button>
+                </Link>
+              )}
               <CommentEditModal comment={data} />
               <CommentDeleteButton id={_id} />
             </div>

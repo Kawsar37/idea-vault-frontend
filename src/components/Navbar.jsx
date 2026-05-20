@@ -1,16 +1,21 @@
-"use client";
-
-import { Avatar, Button, Chip, Spinner } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NavLink from "./NavLink";
 import { ThemeSwitch } from "./ThemeSwitch";
-import { authClient, useSession } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import LogOutOutBtn from "./LogOutBtn";
 
-export default function Navbar() {
-  const { data: session, isPending } = useSession();
-
+export default async function Navbar() {
+  const session = await auth.api.getSession({
+    query: {
+      disableCookieCache: true,
+    },
+    headers: await headers(),
+  });
   const links = (
     <>
       <li>
@@ -30,10 +35,11 @@ export default function Navbar() {
       </li>
     </>
   );
+
   return (
-    <div className="navbar bg-base-100 shadow-sm dark:shadow-white/10 mb-7 lg:mb-15">
+    <div className="sticky top-0 navbar bg-gray-100 dark:bg-black shadow-sm dark:shadow-white/10 mb-7 lg:mb-15 z-40">
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown z-10">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -53,39 +59,36 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-gray-100 dark:bg-black dark:ring-gray-50 rounded-lg z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-gray-100 dark:bg-black dark:ring-gray-50 rounded-lg z-50 mt-3 w-52 p-2 shadow"
           >
             {links}
-            {session && (
-              <Button
-                variant="danger"
-                onClick={async () => {
-                  await authClient.signOut();
-                }}
-                className={" w-full"}
-              >
-                Log Out
-              </Button>
-            )}
+
+            {session && <LogOutOutBtn />}
           </ul>
         </div>
         <Link
           href={"/"}
-          className="btn btn-ghost hover:border-none hover:bg-transparent border-none ring-transparent hover:ring-transparent"
+          className="hover:border-none hover:bg-transparent border-none ring-transparent hover:ring-transparent"
         >
           <Image
             src={"/assets/logo.svg"}
-            height={60}
-            width={60}
+            height={65}
+            width={65}
             alt="logo"
             loading="eager"
+            className="m-0"
           />
         </Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end pr-4 z-50">
+
+      <div className="navbar-end pr-4 relative z-50">
+        <div className="relative z-50">
+          <ThemeSwitch />
+        </div>
         {session ? (
           <div className="flex items-center gap-3">
             <Link href={"/my-profile"}>
@@ -99,15 +102,7 @@ export default function Navbar() {
               </Avatar>
             </Link>
 
-            <Button
-              variant="danger"
-              onClick={async () => {
-                await authClient.signOut();
-              }}
-              className={"hidden lg:flex"}
-            >
-              Log Out
-            </Button>
+            <LogOutOutBtn />
           </div>
         ) : (
           <Link href={"/sign-in"}>

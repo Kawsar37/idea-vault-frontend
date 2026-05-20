@@ -1,6 +1,9 @@
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import NavbarComponent from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 import { Providers } from "./provider";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
@@ -18,9 +21,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`h-full antialiased`} suppressHydrationWarning>
-      <body className="bg-background text-foreground" cz-shortcut-listen="true">
+      <body
+        className="bg-background text-foreground relative"
+        cz-shortcut-listen="true"
+      >
         <Providers>
-          <NavbarComponent />
+          <Navbar />
           <main className=" min-h-[70vh]">{children}</main>
           <Footer />
           <Toaster />

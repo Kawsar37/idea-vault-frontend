@@ -20,9 +20,9 @@ export default function IdeasPage() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const { search } = Object.fromEntries(formData);
-
+    console.log(search);
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/idea-search/${search}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/idea-search/${search.trim()}`,
     );
     const data = await res.json();
     setIdeas(data);
