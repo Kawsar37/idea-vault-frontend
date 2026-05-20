@@ -86,9 +86,7 @@ export default async function Navbar() {
       </div>
 
       <div className="navbar-end pr-4 relative z-50">
-        <div className="relative z-50">
-          <ThemeSwitch />
-        </div>
+        <div className="relative z-50">{/* <ThemeSwitch /> */}</div>
         {session ? (
           <div className="flex items-center gap-3">
             <Link href={"/my-profile"}>
