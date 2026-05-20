@@ -1,8 +1,8 @@
-import { Avatar, Button, Card } from "@heroui/react";
-import Image from "next/image";
+import { Avatar, Card } from "@heroui/react";
 import CommentDeleteButton from "./CommentDeleteButton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import { CommentEditModal } from "./CommentEditModal";
 
 export async function CommentCard({ comment: data }) {
   const session = await auth.api.getSession({
@@ -27,7 +27,12 @@ export async function CommentCard({ comment: data }) {
             {userName}
           </Card.Title>
           <Card.Description className="text-base">{comment}</Card.Description>
-          {session.user.id === userId && <CommentDeleteButton id={_id} />}
+          {session.user.id === userId && (
+            <div className="flex gap-3 absolute md:top-2 top-20 right-2">
+              <CommentEditModal comment={data} />
+              <CommentDeleteButton id={_id} />
+            </div>
+          )}
         </Card.Header>
         <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col">

@@ -22,10 +22,7 @@ export default function IdeaDeleteButton({ id }) {
 
   return (
     <AlertDialog>
-      <Button
-        variant="danger"
-        className={"rounded-full h-10 w-10 absolute md:top-2 top-20 right-2"}
-      >
+      <Button variant="danger" className={"rounded-full h-10 w-10 "}>
         <TrashBin />
       </Button>
       <AlertDialog.Backdrop>

@@ -3,6 +3,7 @@ import { Avatar, Button, Card } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import IdeaDeleteButton from "./IdeaDeleteButton";
+import { EditIdeaModal } from "./EditIdeaModal";
 
 export default function IdeaCard({ idea, icon = false }) {
   const {
@@ -35,7 +36,11 @@ export default function IdeaCard({ idea, icon = false }) {
           <Card.Description>{shortDescription}</Card.Description>
           <p className="text-sm">Budget: ${budget}</p>
 
-          {icon && <IdeaDeleteButton id={_id} />}
+          {icon && (
+            <div className="flex gap-3 absolute md:top-2 top-31 right-2">
+              <EditIdeaModal idea={idea} /> <IdeaDeleteButton id={_id} />
+            </div>
+          )}
         </Card.Header>
         <Card.Footer className="mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col">

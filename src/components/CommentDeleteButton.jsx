@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 
 export default function CommentDeleteButton({ id }) {
   const handleDelete = async () => {
-    console.log(id);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/comment/${id}`,
       {
@@ -23,10 +22,7 @@ export default function CommentDeleteButton({ id }) {
 
   return (
     <AlertDialog>
-      <Button
-        variant="danger"
-        className={"rounded-full h-10 w-10 absolute md:top-2 top-20 right-2"}
-      >
+      <Button variant="danger" className={"rounded-full h-10 w-10 "}>
         <TrashBin />
       </Button>
       <AlertDialog.Backdrop>
