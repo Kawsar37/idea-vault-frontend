@@ -10,12 +10,17 @@ import { headers } from "next/headers";
 import LogOutOutBtn from "./LogOutBtn";
 
 export default async function Navbar() {
-  const session = await auth.api.getSession({
-    query: {
-      disableCookieCache: true,
-    },
-    headers: await headers(),
-  });
+  let session = null;
+  try {
+    session = await auth.api.getSession({
+      query: { disableCookieCache: true },
+      headers: await headers(),
+    });
+  } catch (e) {
+    console.log("Safely bypassed session check during Vercel build");
+    session = null;
+  }
+
   const links = (
     <>
       <li>
