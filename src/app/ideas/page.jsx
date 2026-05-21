@@ -2,16 +2,26 @@
 
 import IdeaCard from "@/components/IdeaCard";
 import { fetchIdeas } from "@/lib/machine";
-import { Button, Label, SearchField, Select, ListBox } from "@heroui/react";
+import {
+  Button,
+  Label,
+  SearchField,
+  Select,
+  ListBox,
+  Spinner,
+} from "@heroui/react";
 import React, { useEffect, useState } from "react";
 
 export default function IdeasPage() {
   const [ideas, setIdeas] = useState([]);
   const [state, setState] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     async function loadIdeas() {
+      setIsLoading(true);
       const data = await fetchIdeas();
       setIdeas(data);
+      setIsLoading(false);
     }
     loadIdeas();
   }, []);
@@ -38,6 +48,13 @@ export default function IdeasPage() {
     console.log(data);
     setIdeas(data);
   };
+
+  if (isLoading)
+    return (
+      <div className="max-w-[90%] flex justify-center items-center min-h-[70vh]">
+        <Spinner color="warning" />
+      </div>
+    );
 
   return (
     <div className="max-w-[90%] mx-auto">
