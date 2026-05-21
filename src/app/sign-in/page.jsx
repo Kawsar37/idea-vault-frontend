@@ -52,7 +52,10 @@ export default function SignInPage() {
             }}
           >
             <Label>Email</Label>
-            <Input placeholder="john@example.com" />
+            <Input
+              className={"w-full shadow-sm bg-white"}
+              placeholder="john@example.com"
+            />
             <FieldError />
           </TextField>
 

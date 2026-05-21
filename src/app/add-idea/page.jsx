@@ -62,7 +62,7 @@ export default function AddIdeaPage() {
         <TextField isRequired name="title" type="text">
           <Label>Idea Title</Label>
           <Input
-            className={"bg-white w-full"}
+            className={"bg-white w-full shadow-sm"}
             placeholder="Enter Your Idea Title"
           />
           <FieldError />
@@ -140,7 +140,7 @@ export default function AddIdeaPage() {
           <TextField isRequired name="imageUrl" type="text" className="flex-1">
             <Label>Image URL</Label>
             <Input
-              className={"bg-white w-full"}
+              className={"bg-white w-full shadow-sm"}
               placeholder="Enter Image URL"
             />
             <FieldError />
@@ -154,7 +154,7 @@ export default function AddIdeaPage() {
               id="input-type-number"
               min={0}
               placeholder="Enter Your Estimate Budget"
-              className={"bg-white w-full"}
+              className={"bg-white w-full shadow-sm"}
             />
             <FieldError />
           </TextField>
@@ -168,7 +168,7 @@ export default function AddIdeaPage() {
             <Label>Target Audience</Label>
             <Input
               placeholder="Enter Target Audience"
-              className={"bg-white w-full"}
+              className={"bg-white w-full shadow-sm"}
             />
             <FieldError />
           </TextField>

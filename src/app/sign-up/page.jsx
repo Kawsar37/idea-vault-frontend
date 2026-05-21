@@ -37,11 +37,14 @@ export default function SignUpPage() {
   };
   return (
     <div className="pt-15 lg:pt-10">
-      <Card className="md:max-w-96 max-w-[90%] mx-auto">
+      <Card className="md:max-w-96 max-w-[90%] mx-auto rounded-xl">
         <Form className="flex w-full flex-col gap-4" onSubmit={onSubmit}>
           <TextField isRequired name="name" type="text">
             <Label>Name</Label>
-            <Input placeholder="Enter Full Name" />
+            <Input
+              className={"shadow-sm w-full"}
+              placeholder="Enter Full Name"
+            />
             <FieldError />
           </TextField>
 
@@ -57,13 +60,19 @@ export default function SignUpPage() {
             }}
           >
             <Label>Email</Label>
-            <Input placeholder="john@example.com" />
+            <Input
+              className={"shadow-sm w-full"}
+              placeholder="john@example.com"
+            />
             <FieldError />
           </TextField>
 
           <TextField isRequired name="image" type="text">
             <Label>Image Link</Label>
-            <Input placeholder="https://example.com/image" />
+            <Input
+              className={"shadow-sm w-full"}
+              placeholder="https://example.com/image"
+            />
             <FieldError />
           </TextField>
 
