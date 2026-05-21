@@ -25,7 +25,7 @@ export default async function MyProfilePage() {
         <Avatar.Fallback>{session.user.name[0]}</Avatar.Fallback>
       </Avatar>
 
-      <div className="text-lg text-gray-700 flex flex-col gap-4 max-w-200 px-4 mx-auto text-center mt-30">
+      <div className="text-lg text-gray-700 dark:text-gray-100 flex flex-col gap-4 max-w-200 px-4 mx-auto text-center mt-30">
         <h1>
           <strong>Name:</strong> {session.user.name}
         </h1>

@@ -66,7 +66,10 @@ export function ProfileEditModal() {
                     type="text"
                   >
                     <Label>Name</Label>
-                    <Input placeholder="Enter Full Name" />
+                    <Input
+                      placeholder="Enter Full Name"
+                      className={"border w-full"}
+                    />
                     <FieldError />
                   </TextField>
 
@@ -77,7 +80,10 @@ export function ProfileEditModal() {
                     type="text"
                   >
                     <Label>Image Link</Label>
-                    <Input placeholder="https://example.com/image" />
+                    <Input
+                      className={"border w-full"}
+                      placeholder="https://example.com/image"
+                    />
                     <FieldError />
                   </TextField>
 

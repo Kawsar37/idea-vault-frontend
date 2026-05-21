@@ -38,6 +38,9 @@ export default async function Navbar() {
       <li>
         <NavLink href={"/my-interactions"}>My Interactions</NavLink>
       </li>
+      <li>
+        <NavLink href={"/my-profile"}>My Profile</NavLink>
+      </li>
     </>
   );
 
@@ -64,11 +67,9 @@ export default async function Navbar() {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-gray-100 dark:bg-black dark:ring-gray-50 rounded-lg z-50 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-gray-100! dark:bg-black! rounded-lg z-999999 mt-3 w-52 p-2 shadow"
           >
             {links}
-
-            {session && <LogOutOutBtn />}
           </ul>
         </div>
         <Link

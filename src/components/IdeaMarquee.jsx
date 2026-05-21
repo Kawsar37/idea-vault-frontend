@@ -14,7 +14,7 @@ export function IdeasMarquee({ ideas }) {
 
       <Marquee
         gradient={true} // This turns on the fade effect
-        gradientColor="white"
+        gradientColor="#F5F5F5"
         pauseOnHover
         className="[--duration:30s] gap-4"
       >
@@ -24,9 +24,6 @@ export function IdeasMarquee({ ideas }) {
           </div>
         ))}
       </Marquee>
-
-      <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r"></div>
-      <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l"></div>
     </div>
   );
 }
