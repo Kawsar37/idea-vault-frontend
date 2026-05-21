@@ -1,11 +1,30 @@
+// export const dynamic = "force-dynamic";
+
 import IdeaCard from "@/components/IdeaCard";
 import { IdeasMarquee } from "@/components/IdeaMarquee";
 import ImageHover from "@/components/ImageHover";
 import HeroSlider from "@/components/SliderHomePage";
 
 export default async function Home() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home-ideas`);
-  const ideas = await res.json();
+  let ideas = [];
+  try {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    if (!backendUrl) throw new Error("NEXT_PUBLIC_BACKEND_URL is not defined");
+
+    const res = await fetch(`${backendUrl}/home-ideas`, {
+      cache: "no-store",
+    });
+
+    if (res.ok) {
+      const contentType = res.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        ideas = await res.json();
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch home ideas during render:", error.message);
+    ideas = [];
+  }
 
   return (
     <div>
