@@ -2,6 +2,10 @@
 
 IdeaVault is a dynamic, fully responsive web application designed for entrepreneurs, innovators and creators to share, explore and validate startup ideas. The platform fosters community collaboration through interaction, constructive feedback and concept refinement without the constraints of traditional scheduling tools.
 
+## 🔗 Backend Repository Link
+
+- **Repo Link:** [https://github.com/Kawsar37/idea-vault-backend]
+
 ## 🔗 Live Deployment & Resources
 
 - **Live Website Link:** [https://idea-vault-frontend-eight.vercel.app/]
