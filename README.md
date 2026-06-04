@@ -25,10 +25,10 @@ IdeaVault is a dynamic, fully responsive web application designed for entreprene
 
 ## 🛠️ Tech Stack Applied
 
-- **Client Architecture:** React.js, React Router DOM, Tailwind CSS, DaisyUI, React Fast Marquee
+- **Client Architecture:** Next.js, Tailwind CSS, DaisyUI, HeroUI, React Fast Marquee
 - **Server Architecture:** Node.js, Express.js, MongoDB Native Driver
-- **Identity & State Management:** Firebase Authentication, JSON Web Tokens (JWT)
-- **Notifications & Feedback:** React Hot Toast /
+- **Identity & State Management:** BetterAuth, JSON Web Tokens (JWT)
+- **Notifications & Feedback:** React Hot Toast 
 
 ---
 
